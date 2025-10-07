@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "example-nuxt-cloudflare",
+  "compatibility_date": "2025-09-15",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "example-nuxt-cloudflare",
+      "database_id": "0f3a5811-4a3d-4933-92ee-e02be2565072",
+      "migrations_dir": "./server/database/migrations"
+    }
+  ]
+}
