@@ -22,7 +22,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          preCommands: d1 migrations apply example-nuxt-cloudflare --remote
+          preCommands: wrangler d1 migrations apply example-nuxt-cloudflare --remote
           command: pages deploy dist --project-name=example-nuxt-cloudflare
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
