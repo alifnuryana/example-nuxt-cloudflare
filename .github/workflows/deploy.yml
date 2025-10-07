@@ -1,0 +1,26 @@
+name: deploy.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: 'Deploy to Cloudflare Pages'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 'lts/*'
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm build
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: d1 migrations apply example-nuxt-cloudflare --remote
+          command: pages deploy dist --project-name=example-nuxt-cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
